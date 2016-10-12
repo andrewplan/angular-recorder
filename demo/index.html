@@ -2,9 +2,9 @@
 
 <head>
     <title>Demo for Audio Recorder</title>
-    <script src="../bower_components/angular/angular.min.js"></script>
-    <script src="../bower_components/wavesurfer.js/dist/wavesurfer.min.js"></script>
-    <script src="../dist/angular-audio-recorder.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
+    <script src="../dist/angular-audio-recorder.js"></script>
     <script src="demo.js"></script>
 </head>
 
@@ -29,9 +29,10 @@
             <button ng-click="recorder.status.isPlaying ? recorder.playbackPause() : recorder.playbackResume()"
                     type="button" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
                 {{recorder.status.isStopped || recorder.status.isPaused ? 'Play' : 'Pause'}}
+
             </button>
 
-            <button ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+            <button id="save" ng-click="recorder.save()" ng-disabled="recorder.status.isRecording || !recorder.audioModel">
                 Download
             </button>
 
@@ -53,6 +54,7 @@
             <h2 style="font-family: sans-serif; text-align: center; width: 60px; border-radius: 20px;
         border: solid 2px #333; padding: 20px 10px;" ng-if="recorder.status.isRecording">
                 {{recorder.elapsedTime > 9 ? recorder.elapsedTime : ('0'+recorder.elapsedTime)}}
+
             </h2>
 
 
