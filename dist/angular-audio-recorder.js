@@ -1,3 +1,5 @@
+// import lamejs from 'lamejs/lame.all.js';
+
 (function() {
     'use strict';
   window.cancelAnimationFrame = window.cancelAnimationFrame ||
@@ -615,6 +617,8 @@
       }
     ]);
 
+
+
   angular.module('angularAudioRecorder.services', ['angularAudioRecorder.config']);
   angular.module('angularAudioRecorder.services')
     .provider('recorderService', ['recorderScriptUrl',
@@ -627,6 +631,7 @@
           swfUrl = scriptPath + '../lib/recorder.swf',
           utils,
           mp3Covert = false,
+          // mp3Config = {bitRate: 92}
           mp3Config = {bitRate: 92, lameJsUrl: scriptPath + '../lib/lame.min.js'}
           ;
 
@@ -1531,6 +1536,8 @@
     win.Recorder = Recorder;
   })(window);
 
+
+
   (function (win) {
     'use strict';
 
@@ -1538,6 +1545,7 @@
       //should not reference any variable in parent scope as it will executed in its
       //on isolated scope
       console.log('MP3 conversion worker started.');
+      console.log('params is ', params);
       if (typeof lamejs === 'undefined') {
         importScripts(params.lameJsUrl);
       }
@@ -1615,7 +1623,8 @@
     var MP3Converter = function (config) {
 
       config = config || {};
-      config.lameJsUrl = config.lameJsUrl || (SCRIPT_BASE + '/lame.min.js');
+      config.lameJsUrl = (SCRIPT_BASE + 'lame-min.js');
+      // config.lameJsUrl = config.lameJsUrl || (SCRIPT_BASE + '/lame.min.js');
       var busy = false;
       var mp3Worker = MP3ConversionWorker.toWorker(config);
 
